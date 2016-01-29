@@ -1,0 +1,76 @@
+#           _____ ____  _   _ ______ _____ _____
+#         / ____/ __ \| \ | |  ____|_   _/ ____|
+#        | |   | |  | |  \| | |__    | || |  __
+#        | |   | |  | | . ` |  __|   | || | |_ |
+#        | |___| |__| | |\  | |     _| || |__| |
+#         \_____\____/|_| \_|_|    |_____\_____|
+
+# the address of the ES cluster to monitor
+cluster_addr: http://localhost:9200
+# credentials if the cluster is protected
+auth_login:
+auth_password:
+
+# do you want an info webpage, where and on which port. Port must be > 1024
+server_mode: false
+server_port: 4242
+server_path: "/escheck"
+server_login:
+server_password:
+
+# do you want a rotating log and where
+log: true
+log_path: /var/log
+log_name: escheck
+rotate_every: 65536
+number_of_files: 7
+
+# number of request attempts before closing a goroutine. Put -1 if you want
+# to try to do requests forever (not a good idea)
+max_retries: 3
+
+# number of workers in the task queue. This affects the speed at which tasks like
+# sending emails/slack messages are processed. Modify this value if you have
+# a lot of queries and the program struggle to handle the charge.
+workers: 64
+
+# email server information. You know, for sending emails.
+mailinfo:
+  server:
+  port:
+  username:
+  password:
+
+# slack info. For sending slack messages via a bot with a token
+slackinfo:
+  token:
+
+# The query list. Put your queries' information here, wether they are manual or
+# generated queries (autoqueries). Any time value must be formatted like 50s,
+# 30m, 1h or 500ms. If taggle is true, the action will only be trigged once,
+# and will not be trigged again until the condition is false.
+querylist:
+#  example:
+#    schedule: 60s
+#    alert_onlyonce: true
+#    timeout: 30s
+#    alert_endmsg: false
+#    query:
+#      index: myindex*
+#      sortby: "timestamp"
+#      sortorder: ASC
+#      nbdocs: 5
+#      limit: 1
+#      type: query_string
+#      clauses:
+#        query: "*"
+#        analyze_wildcard: true
+#    actions:
+#      list: ["slack", "email"]
+#      slack:
+#        channel: "#mychannel"
+#        text: "Houston we have a problem"
+#      email:
+#        to: eddie@example.com
+#        title: "Alert"
+#        text: "A lot of errors in your cluster"
